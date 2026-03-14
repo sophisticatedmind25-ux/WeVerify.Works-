@@ -1,0 +1,9 @@
+{
+  "name": "WeVerify.works Admin Dashboard",
+  "description": "Professional infrastructure for Employment, Residence, and Information verification. Leveraging AI and global datasets to ensure digital trust.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone",
+    "geolocation"
+  ]
+}

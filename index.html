@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WeVerify.works | Digital Authenticity</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #0f172a;
+            overflow-x: hidden;
+        }
+
+        /* Cinematic HUD Animations */
+        @keyframes reveal-up {
+            0% { transform: translateY(40px) scale(0.98); opacity: 0; filter: blur(20px); }
+            100% { transform: translateY(0) scale(1); opacity: 1; filter: blur(0); }
+        }
+
+        @keyframes draw-line {
+            0% { width: 0; opacity: 0; }
+            20% { opacity: 1; }
+            100% { width: 100%; opacity: 1; }
+        }
+
+        @keyframes scanning {
+            0% { left: -20%; opacity: 0; }
+            50% { opacity: 0.8; }
+            100% { left: 120%; opacity: 0; }
+        }
+
+        @keyframes flight-path {
+            0% { left: 0%; transform: scale(0.8) rotate(5deg) translateY(0); opacity: 0; }
+            5% { opacity: 1; }
+            50% { transform: scale(1.1) rotate(0deg) translateY(-5px); }
+            95% { opacity: 1; }
+            100% { left: 100%; transform: scale(0.8) rotate(-5deg) translateY(0); opacity: 0; }
+        }
+
+        @keyframes global-flight {
+            0% { transform: translate(-100vw, 30vh) rotate(15deg); opacity: 0; }
+            10% { opacity: 0.1; }
+            50% { transform: translate(0, 0) rotate(5deg); opacity: 0.15; }
+            90% { opacity: 0.1; }
+            100% { transform: translate(100vw, -30vh) rotate(-15deg); opacity: 0; }
+        }
+
+        @keyframes text-shimmer {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+
+        @keyframes vapor-trail {
+            0% { width: 0; opacity: 0; left: 0; }
+            5% { opacity: 0.6; }
+            100% { width: 100%; opacity: 0; left: 10%; }
+        }
+
+        @keyframes hud-flicker {
+            0%, 100% { opacity: 1; }
+            5% { opacity: 0.8; }
+            10% { opacity: 1; }
+            15% { opacity: 0.9; }
+            20% { opacity: 1; }
+        }
+
+        @keyframes digital-pulse {
+            0% { box-shadow: 0 0 0 0 rgba(13, 148, 136, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(13, 148, 136, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(13, 148, 136, 0); }
+        }
+
+        .animate-reveal {
+            animation: reveal-up 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+        }
+
+        .animate-draw {
+            animation: draw-line 1.8s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+        }
+
+        .scan-overlay {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 30%;
+            background: linear-gradient(90deg, transparent, rgba(13, 148, 136, 0.1), transparent);
+            animation: scanning 4s infinite linear;
+            pointer-events: none;
+        }
+
+        .flight-glider-icon {
+            position: absolute;
+            bottom: -15px;
+            z-index: 20;
+            animation: flight-path 7s infinite cubic-bezier(0.4, 0, 0.2, 1);
+            filter: drop-shadow(0 0 12px rgba(13, 148, 136, 0.6));
+        }
+
+        .animate-global-flight {
+            animation: global-flight 35s linear infinite;
+        }
+
+        .shimmer-text {
+            background: linear-gradient(90deg, #0d9488 0%, #334155 50%, #0d9488 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: text-shimmer 5s linear infinite;
+        }
+
+        .vapor-trail {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(13, 148, 136, 0.3), transparent);
+            animation: vapor-trail 7s infinite cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .hud-mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .flicker {
+            animation: hud-flicker 4s infinite step-end;
+        }
+
+        .glow-dot {
+            width: 6px;
+            height: 6px;
+            background: #0d9488;
+            border-radius: 50%;
+            display: inline-block;
+            animation: digital-pulse 2s infinite;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+</body>
+</html>
